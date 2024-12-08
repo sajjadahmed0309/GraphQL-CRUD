@@ -1,0 +1,38 @@
+
+
+type Query{
+    employees: [Employee]
+    employee(id:ID):Employee
+    attendences:[Attendence]
+    attendence(id:ID):Attendence
+}
+
+type Employee {
+    id:ID
+    name:String
+    age:Int
+    grade:String
+    subjects:subjects
+    attendences(first: Int,last: Int,before: String,after: String): AttendenceConnection
+}
+
+type Attendence {
+    id:ID
+    present:Boolean
+    date:String
+}
+
+enum subjects {
+    MATH,
+    ENGLISH,
+    SCIENCE,
+    HISTORY
+}
+
+type Mutation {
+    createEmployee(id: ID!, name: String!, age: Int!, grade: String!, subjects: subjects!): Employee
+    updateAttendence(employeeId: ID!, date: String!, present: Boolean): Attendence
+    createAttendence(employeeId: ID!, date: String!, present: Boolean!): Attendence
+    updateEmployee(id: ID!, name: String, age: Int, grade: String, subjects: subjects): Employee
+
+}
